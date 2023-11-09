@@ -1,0 +1,16 @@
+{
+    "name": "phphd/coding-standard",
+    "description": "PhPhD Coding Standard",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yevhen Sidelnyk",
+            "email": "zsidelnik@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symplify/easy-coding-standard": "^12.0"
+    }
+}
