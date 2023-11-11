@@ -11,6 +11,7 @@ use PhpCsFixer\Fixer\ControlStructure\SimplifiedIfReturnFixer;
 use PhpCsFixer\Fixer\ControlStructure\TrailingCommaInMultilineFixer;
 use PhpCsFixer\Fixer\ControlStructure\YodaStyleFixer;
 use PhpCsFixer\Fixer\FunctionNotation\FopenFlagsFixer;
+use PhpCsFixer\Fixer\FunctionNotation\NativeFunctionInvocationFixer;
 use PhpCsFixer\Fixer\FunctionNotation\NullableTypeDeclarationForDefaultNullValueFixer;
 use PhpCsFixer\Fixer\Import\GlobalNamespaceImportFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
@@ -134,6 +135,9 @@ return static function (ECSConfig $ecsConfig): void {
         ],
         PhpdocOrderByValueFixer::class => [
             'annotations' => [],
+        ],
+        NativeFunctionInvocationFixer::class => [
+            'include' => ['@all'],
         ],
     ]);
     $ecsConfig->rules([
