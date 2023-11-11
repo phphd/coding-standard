@@ -9,8 +9,18 @@
             "email": "zsidelnik@gmail.com"
         }
     ],
+    "keywords": [
+        "static analysis",
+        "code style",
+        "fixer"
+    ],
     "minimum-stability": "stable",
     "require": {
         "symplify/easy-coding-standard": "^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhPhD\\CodingStandard\\": "src"
+        }
     }
 }
