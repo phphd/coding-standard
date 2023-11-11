@@ -9,5 +9,5 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->paths([__DIR__.'/']);
     $ecsConfig->skip([__DIR__.'/vendor']);
 
-    $ecsConfig->sets([PhdSetList::PATH]);
+    $ecsConfig->sets([PhdSetList::ecs()->getPath()]);
 };
