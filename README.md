@@ -31,6 +31,29 @@ PhPhD Coding Standard
        $ecsConfig->paths([__DIR__.'/']);
        $ecsConfig->skip([__DIR__.'/vendor']);
    
-   +    $ecsConfig->sets([PhdSetList::PATH]);
+   +   $ecsConfig->sets([PhdSetList::ecs()->getPath()]);
    };
    ```
+
+4. Add set list to your `rector.php` config file:
+
+    ```diff
+    +use PhPhD\CodingStandard\ValueObject\Set\PhdSetList;
+    use Rector\Config\RectorConfig;
+    use Rector\Core\ValueObject\PhpVersion;
+    
+    return static function (RectorConfig $rectorConfig): void {
+        $rectorConfig->paths([__DIR__.'/']);
+        $rectorConfig->skip([__DIR__.'/vendor']);
+    
+    +   $rectorConfig->sets([PhdSetList::rector()->getPath()]);
+        $rectorConfig->phpVersion(PhpVersion::PHP_80);
+    };
+   ```
+
+5. Run the tools:
+
+    ```shell
+    vendor/bin/ecs check
+    vendor/bin/rector --dry-run
+    ```
