@@ -83,7 +83,7 @@ return static function (ECSConfig $ecsConfig): void {
             'import_constants' => false,
         ],
         MultilineWhitespaceBeforeSemicolonsFixer::class => [
-            'strategy' => 'no_multi_line',
+            'strategy' => 'new_line_for_chained_calls',
         ],
         BlankLineBeforeStatementFixer::class => [
             'statements' => [
