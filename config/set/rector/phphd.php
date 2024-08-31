@@ -12,7 +12,6 @@ use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameVariableToMatchNewTypeRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\TypeDeclaration\Rector\While_\WhileNullableToInstanceofRector;
 
 return static function (RectorConfig $rectorConfig): void {
     // register a single rule
@@ -32,7 +31,6 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip(
         [
-            WhileNullableToInstanceofRector::class,
             FlipTypeControlToUseExclusiveTypeRector::class,
             RenameParamToMatchTypeRector::class,
             RenamePropertyToMatchTypeRector::class,
