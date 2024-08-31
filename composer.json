@@ -16,8 +16,8 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "symplify/easy-coding-standard": "^12.3",
-        "rector/rector": "^1.0"
+        "symplify/easy-coding-standard": "^12.3.5",
+        "rector/rector": "^1.2.4"
     },
     "autoload": {
         "psr-4": {
