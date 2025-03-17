@@ -41,7 +41,7 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->dynamicSets([
         '@PhpCsFixer',
         '@PHPUnit100Migration:risky',
-        '@PHP82Migration',
+        '@PHP83Migration',
         '@PhpCsFixer:risky',
     ]);
     $ecsConfig->sets([
