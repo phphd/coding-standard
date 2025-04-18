@@ -3,7 +3,7 @@ PhPhD Coding Standard
 
 ## Installation
 
-1. Add VCS-repository in `composer.json` to this package:
+1. Add VCS repository in `composer.json` to this package:
     
     ```json
     {
@@ -21,7 +21,7 @@ PhPhD Coding Standard
    composer require --dev phphd/coding-standard
    ```
    
-3. Add set list to your `ecs.php` config file:
+3. Add a set list to your `ecs.php` config file:
 
    ```diff
    +use PhPhD\CodingStandard\ValueObject\Set\PhdSetList;
