@@ -15,8 +15,9 @@ use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    // register a single rule
-    $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
+    $rectorConfig->importNames();
+    $rectorConfig->importShortClasses();
+    $rectorConfig->removeUnusedImports();
 
     $rectorConfig->sets([
         LevelSetList::UP_TO_PHP_84,
@@ -32,6 +33,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->rules([
         FlipNegatedTernaryInstanceofRector::class,
+        InlineConstructorDefaultToPropertyRector::class,
     ]);
 
     $rectorConfig->skip(
