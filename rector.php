@@ -6,10 +6,9 @@ use PhPhD\CodingStandard\ValueObject\Set\PhdSetList;
 use Rector\Config\RectorConfig;
 use Rector\ValueObject\PhpVersion;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([__DIR__.'/']);
-    $rectorConfig->skip([__DIR__.'/vendor']);
-
-    $rectorConfig->sets([PhdSetList::rector()->getPath()]);
-    $rectorConfig->phpVersion(PhpVersion::PHP_74);
-};
+return RectorConfig::configure()
+    ->withPaths([__DIR__.'/'])
+    ->withSkip([__DIR__.'/vendor'])
+    ->withSets([PhdSetList::rector()->getPath()])
+    ->withPhpVersion(PhpVersion::PHP_74)
+;
