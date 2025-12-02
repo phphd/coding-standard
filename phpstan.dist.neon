@@ -1,0 +1,23 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/tomasvotruba/type-coverage/config/extension.neon
+
+parameters:
+    level: max
+    phpVersion:
+        min: 80100
+        max: 80499
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    paths:
+        - src
+        - config
+    fileExtensions:
+        - 'php'
+    bootstrapFiles:
+        - vendor/symplify/easy-coding-standard/vendor/scoper-autoload.php
+    type_coverage:
+        declare: 100
+        return_type: 100
+        param_type: 100
+        property_type: 100
+        constant: 0 # requires php 8.3
