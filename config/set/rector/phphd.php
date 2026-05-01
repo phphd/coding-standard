@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\CodeQuality\Rector\ClassMethod\LocallyCalledStaticMethodToNonStaticRector;
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\Config\RectorConfig;
@@ -28,6 +29,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::NAMING,
         SetList::PRIVATIZATION,
         SetList::TYPE_DECLARATION,
+        SetList::TYPE_DECLARATION_DOCBLOCKS,
         SetList::EARLY_RETURN,
     ]);
 
@@ -38,6 +40,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip(
         [
+            LocallyCalledStaticMethodToNonStaticRector::class,
             FlipTypeControlToUseExclusiveTypeRector::class,
             RenameParamToMatchTypeRector::class,
             RenamePropertyToMatchTypeRector::class,

@@ -116,6 +116,7 @@ return static function (ECSConfig $ecsConfig): void {
             ],
         ],
         PhpdocLineSpanFixer::class => [
+            'class' => 'single',
             'method' => 'single',
             'property' => 'single',
             'const' => 'single',
