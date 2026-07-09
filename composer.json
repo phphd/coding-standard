@@ -16,8 +16,17 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "symplify/easy-coding-standard": "^13.0.4",
-        "rector/rector": "^2.4.2"
+        "phpstan/phpstan": "^2.2.5",
+        "phpstan/phpstan-strict-rules": "^2.0.11",
+        "tomasvotruba/type-coverage": "^2.2",
+        "phpat/phpat": "^0.12.4",
+        "phpstan/phpstan-phpunit": "^2.0.18",
+        "rector/rector": "^2.3",
+        "symplify/easy-coding-standard": "^13.2"
+    },
+    "require-dev": {
+        "php": ">=8.0",
+        "symfony/var-dumper": "^6.4 || ^7.4"
     },
     "autoload": {
         "psr-4": {
@@ -27,11 +36,13 @@
     "scripts": {
         "ci:pack": [
             "@ci:ecs",
-            "@ci:rector"
+            "@ci:rector",
+            "@ci:phpstan"
         ],
         "ci:ecs": "vendor/bin/ecs check",
         "ci:ecs-fix": "vendor/bin/ecs --fix",
         "ci:rector": "vendor/bin/rector --dry-run",
-        "ci:rector-fix": "vendor/bin/rector"
+        "ci:rector-fix": "vendor/bin/rector",
+        "ci:phpstan": "vendor/bin/phpstan analyze"
     }
 }
