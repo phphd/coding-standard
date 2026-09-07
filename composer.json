@@ -16,13 +16,13 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "phpstan/phpstan": "^2.2.5",
-        "phpstan/phpstan-strict-rules": "^2.0.11",
-        "tomasvotruba/type-coverage": "^2.2",
+        "phpstan/phpstan": "^2.2.13",
+        "phpstan/phpstan-strict-rules": "^2.0.12",
+        "tomasvotruba/type-coverage": "^2.3.6",
         "phpat/phpat": "^0.12.4",
         "phpstan/phpstan-phpunit": "^2.0.18",
-        "rector/rector": "^2.5.5",
-        "symplify/easy-coding-standard": "^13.2.6"
+        "rector/rector": "^2.6.6",
+        "symplify/easy-coding-standard": "^13.3.1"
     },
     "require-dev": {
         "php": ">=8.0",
@@ -36,13 +36,11 @@
     "scripts": {
         "ci:pack": [
             "@ci:ecs",
-            "@ci:rector",
-            "@ci:phpstan"
+            "@ci:rector"
         ],
         "ci:ecs": "vendor/bin/ecs check",
         "ci:ecs-fix": "vendor/bin/ecs --fix",
         "ci:rector": "vendor/bin/rector --dry-run",
-        "ci:rector-fix": "vendor/bin/rector",
-        "ci:phpstan": "vendor/bin/phpstan analyze"
+        "ci:rector-fix": "vendor/bin/rector"
     }
 }

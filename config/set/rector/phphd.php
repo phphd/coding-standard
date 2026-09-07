@@ -13,40 +13,21 @@ use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameVariableToMatchNewTypeRector;
 use Rector\Set\ValueObject\LevelSetList;
-use Rector\Set\ValueObject\SetList;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->importNames();
-    $rectorConfig->importShortClasses();
-    $rectorConfig->removeUnusedImports();
-
-    $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_84,
-        SetList::CODE_QUALITY,
-        SetList::CODING_STYLE,
-        SetList::DEAD_CODE,
-        SetList::STRICT_BOOLEANS,
-        SetList::NAMING,
-        SetList::PRIVATIZATION,
-        SetList::TYPE_DECLARATION,
-        SetList::TYPE_DECLARATION_DOCBLOCKS,
-        SetList::EARLY_RETURN,
-    ]);
-
-    $rectorConfig->rules([
+return RectorConfig::configure()
+    ->withImportNames()
+    ->withPreparedSets(...\array_fill(0, 999, true))
+    ->withSets([LevelSetList::UP_TO_PHP_86])
+    ->withRules([
         FlipNegatedTernaryInstanceofRector::class,
         InlineConstructorDefaultToPropertyRector::class,
-    ]);
-
-    $rectorConfig->skip(
-        [
-            LocallyCalledStaticMethodToNonStaticRector::class,
-            FlipTypeControlToUseExclusiveTypeRector::class,
-            RenameParamToMatchTypeRector::class,
-            RenamePropertyToMatchTypeRector::class,
-            RenameVariableToMatchMethodCallReturnTypeRector::class,
-            RenameVariableToMatchNewTypeRector::class,
-            CatchExceptionNameMatchingTypeRector::class,
-        ],
-    );
-};
+    ])->withSkip([
+        LocallyCalledStaticMethodToNonStaticRector::class,
+        FlipTypeControlToUseExclusiveTypeRector::class,
+        RenameParamToMatchTypeRector::class,
+        RenamePropertyToMatchTypeRector::class,
+        RenameVariableToMatchMethodCallReturnTypeRector::class,
+        RenameVariableToMatchNewTypeRector::class,
+        CatchExceptionNameMatchingTypeRector::class,
+    ])
+;
