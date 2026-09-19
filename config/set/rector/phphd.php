@@ -12,22 +12,30 @@ use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\Class_\RenamePropertyToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameVariableToMatchNewTypeRector;
+use Rector\Naming\Rector\Foreach_\RenameForeachValueVariableToMatchMethodCallReturnTypeRector;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitSelfCallRector;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\Set\ValueObject\LevelSetList;
 
 return RectorConfig::configure()
+    ->withPhpSets()
     ->withImportNames()
     ->withPreparedSets(...\array_fill(0, 999, true))
     ->withSets([LevelSetList::UP_TO_PHP_86])
-    ->withRules([
-        FlipNegatedTernaryInstanceofRector::class,
-        InlineConstructorDefaultToPropertyRector::class,
-    ])->withSkip([
-        LocallyCalledStaticMethodToNonStaticRector::class,
-        FlipTypeControlToUseExclusiveTypeRector::class,
+    ->withSkip([
         RenameParamToMatchTypeRector::class,
         RenamePropertyToMatchTypeRector::class,
         RenameVariableToMatchMethodCallReturnTypeRector::class,
         RenameVariableToMatchNewTypeRector::class,
+        RenameForeachValueVariableToMatchMethodCallReturnTypeRector::class,
         CatchExceptionNameMatchingTypeRector::class,
+        LocallyCalledStaticMethodToNonStaticRector::class,
+        FlipTypeControlToUseExclusiveTypeRector::class,
     ])
+    ->withRules([
+        FlipNegatedTernaryInstanceofRector::class,
+        InlineConstructorDefaultToPropertyRector::class,
+    ])
+    ->withSkip([PreferPHPUnitThisCallRector::class])
+    ->withRules([PreferPHPUnitSelfCallRector::class])
 ;
