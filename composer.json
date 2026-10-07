@@ -16,13 +16,13 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "phpstan/phpstan": "^2.2.13",
-        "phpstan/phpstan-strict-rules": "^2.0.12",
-        "tomasvotruba/type-coverage": "^2.3.6",
-        "phpat/phpat": "^0.12.4",
-        "phpstan/phpstan-phpunit": "^2.0.18",
-        "rector/rector": "^2.6.6",
-        "symplify/easy-coding-standard": "^13.3.1"
+        "phpstan/phpstan": "^2.3.0",
+        "phpstan/phpstan-strict-rules": "^2.1.0",
+        "tomasvotruba/type-coverage": "^2.5.0",
+        "phpat/phpat": "^0.12.5",
+        "phpstan/phpstan-phpunit": "^2.1.1",
+        "rector/rector": "^2.7.0",
+        "symplify/easy-coding-standard": "^13.3.3"
     },
     "require-dev": {
         "php": ">=8.0",
