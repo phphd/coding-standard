@@ -32,116 +32,32 @@ use PhpCsFixer\Fixer\Strict\StrictComparisonFixer;
 use PhpCsFixer\Fixer\Strict\StrictParamFixer;
 use PhpCsFixer\Fixer\StringNotation\SingleQuoteFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
+use Symplify\CodingStandard\Fixer\Spacing\SpaceAfterCommaHereNowDocFixer;
 use Symplify\CodingStandard\Fixer\Spacing\StandaloneLinePromotedPropertyFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
-use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->sets([SetList::COMMON]);
-    $ecsConfig->dynamicSets([
-        '@PhpCsFixer',
-        '@PHPUnit100Migration:risky',
-        '@PHP83Migration',
-        '@PhpCsFixer:risky',
-    ]);
-    $ecsConfig->sets([
-        SetList::PSR_12,
-        SetList::CLEAN_CODE,
-    ]);
-
-    $ecsConfig->rulesWithConfiguration([
-        YodaStyleFixer::class => [
-            'always_move_variable' => true,
-        ],
-        ConcatSpaceFixer::class => [
-            'spacing' => 'none',
-        ],
-        CastSpacesFixer::class => [
-            'space' => 'none',
-        ],
-        PhpdocAlignFixer::class => [
-            'align' => 'left',
-        ],
-        TrailingCommaInMultilineFixer::class => [
-            'elements' => [
-                'arrays',
-                'arguments',
-                'match',
-                'parameters',
-            ],
-        ],
-        OrderedImportsFixer::class => [
-            'imports_order' => [
-                'class',
-                'function',
-                'const',
-            ],
-        ],
-        GlobalNamespaceImportFixer::class => [
-            'import_classes' => true,
-            'import_functions' => true,
-            'import_constants' => false,
-        ],
-        MultilineWhitespaceBeforeSemicolonsFixer::class => [
-            'strategy' => 'new_line_for_chained_calls',
-        ],
-        BlankLineBeforeStatementFixer::class => [
-            'statements' => [
-                'break',
-                'case',
-                'continue',
-                'declare',
-                'default',
-                'do',
-                'for',
-                'foreach',
-                'if',
-                'include',
-                'include_once',
-                'require',
-                'require_once',
-                'return',
-                'switch',
-                'throw',
-                'try',
-                'while',
-                'yield',
-                'yield_from',
-            ],
-        ],
-        ClassAttributesSeparationFixer::class => [
-            'elements' => [
-                'property' => 'one',
-                'method' => 'one',
-            ],
-        ],
-        PhpdocLineSpanFixer::class => [
-            'class' => 'single',
-            'method' => 'single',
-            'property' => 'single',
-            'const' => 'single',
-        ],
-        ClassDefinitionFixer::class => [
-            'single_item_single_line' => true,
-            'multi_line_extends_each_single_line' => true,
-        ],
-        PhpdocTypesOrderFixer::class => [
-            'sort_algorithm' => 'none',
-        ],
-        PhpUnitTestCaseStaticMethodCallsFixer::class => [
-            'call_type' => 'self',
-        ],
-        FopenFlagsFixer::class => [
-            'b_mode' => true,
-        ],
-        PhpdocOrderByValueFixer::class => [
-            'annotations' => [],
-        ],
-        NativeFunctionInvocationFixer::class => [
-            'include' => ['@all'],
-        ],
-    ]);
-    $ecsConfig->rules([
+return ECSConfig::configure()
+    ->withPreparedSets(
+        psr12: true,
+        perCs: true,
+        arrays: true,
+        comments: true,
+        docblocks: true,
+        spaces: true,
+        namespaces: true,
+        controlStructures: true,
+        casing: true,
+        cleanup: true,
+        cleanCode: true,
+        standaloneLine: true,
+    )
+    ->withSkip([
+        PhpdocToCommentFixer::class,
+        SingleLineEmptyBodyFixer::class,
+        NotOperatorWithSuccessorSpaceFixer::class,
+        SpaceAfterCommaHereNowDocFixer::class, // Pre- PHP 7.2 rule;
+    ])
+    ->withRules([
         SingleQuoteFixer::class,
         SelfStaticAccessorFixer::class,
         SimplifiedIfReturnFixer::class,
@@ -153,11 +69,95 @@ return static function (ECSConfig $ecsConfig): void {
         PhpUnitStrictFixer::class,
         NoUnusedImportsFixer::class,
         StandaloneLinePromotedPropertyFixer::class,
-    ]);
-
-    $ecsConfig->skip([
-        PhpdocToCommentFixer::class,
-        SingleLineEmptyBodyFixer::class,
-        NotOperatorWithSuccessorSpaceFixer::class,
-    ]);
-};
+    ])
+    ->withConfiguredRule(YodaStyleFixer::class, [
+        'always_move_variable' => true,
+    ])
+    ->withConfiguredRule(ConcatSpaceFixer::class, [
+        'spacing' => 'none',
+    ])
+    ->withConfiguredRule(CastSpacesFixer::class, [
+        'space' => 'none',
+    ])
+    ->withConfiguredRule(PhpdocAlignFixer::class, [
+        'align' => 'left',
+    ])
+    ->withConfiguredRule(TrailingCommaInMultilineFixer::class, [
+        'elements' => [
+            'arrays',
+            'arguments',
+            'match',
+            'parameters',
+        ],
+    ])
+    ->withConfiguredRule(OrderedImportsFixer::class, [
+        'imports_order' => [
+            'class',
+            'function',
+            'const',
+        ],
+    ])
+    ->withConfiguredRule(GlobalNamespaceImportFixer::class, [
+        'import_classes' => true,
+        'import_functions' => true,
+        'import_constants' => false,
+    ])
+    ->withConfiguredRule(MultilineWhitespaceBeforeSemicolonsFixer::class, [
+        'strategy' => 'new_line_for_chained_calls',
+    ])
+    ->withConfiguredRule(BlankLineBeforeStatementFixer::class, [
+        'statements' => [
+            'break',
+            'case',
+            'continue',
+            'declare',
+            'default',
+            'do',
+            'for',
+            'foreach',
+            'if',
+            'include',
+            'include_once',
+            'require',
+            'require_once',
+            'return',
+            'switch',
+            'throw',
+            'try',
+            'while',
+            'yield',
+            'yield_from',
+        ],
+    ])
+    ->withConfiguredRule(ClassAttributesSeparationFixer::class, [
+        'elements' => [
+            'property' => 'one',
+            'method' => 'one',
+        ],
+    ])
+    ->withConfiguredRule(PhpdocLineSpanFixer::class, [
+        'class' => 'single',
+        'method' => 'single',
+        'property' => 'single',
+        'const' => 'single',
+    ])
+    ->withConfiguredRule(ClassDefinitionFixer::class, [
+        'single_item_single_line' => true,
+        'multi_line_extends_each_single_line' => true,
+    ])
+    ->withConfiguredRule(PhpdocTypesOrderFixer::class, [
+        'sort_algorithm' => 'none',
+    ])
+    ->withConfiguredRule(PhpUnitTestCaseStaticMethodCallsFixer::class, [
+        'call_type' => 'self',
+    ])
+    ->withConfiguredRule(FopenFlagsFixer::class, [
+        'b_mode' => true,
+    ])
+    ->withConfiguredRule(PhpdocOrderByValueFixer::class, [
+        'annotations' => [],
+    ])
+    ->withConfiguredRule(NativeFunctionInvocationFixer::class, [
+        'include' => ['@all'],
+    ])
+;
